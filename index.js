@@ -70,6 +70,6 @@ function logWinner() {	//print winner
 }
 
 let btn = document.querySelector("button");
-btn.addEventListener("click", () => {
-  game();
+  btn.addEventListener("click", () => {
+    game();
 });
