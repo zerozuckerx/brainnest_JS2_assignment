@@ -1,8 +1,8 @@
-const gameStates = ["rock", "paper", "scissors"];
 const points = {
   player: 0,
   computer: 0
 }
+let round = 1;
 
 function playRound(playerSelection) {
     let computerSelection = computerPlay();
@@ -26,46 +26,33 @@ function playRound(playerSelection) {
 // }
 
 function computerPlay() {
-  let randomNumber = Math.floor(Math.random() * gameStates.length); //random number (0 - 2 for array looping)
+  const gameStates = ["rock", "paper", "scissors"];
+  const randomNumber = Math.floor(Math.random() * gameStates.length); //random number (0 - 2 for array looping)
   return gameStates[randomNumber];
 }
 
-function checkValid(input) {
-  input.toLowerCase();
-  if(!gameStates.includes(input)) {
-    console.log("Input not valid. Please choose rock, paper or scissors");
-  } else {
-    return input;
-  }
-}
-
 function game(playerSelection) {
-  let round = 0;
-  let firstTo = 5;
-  if(points.player < firstTo && points.computer < firstTo) {
+  const firstTo = 5;
+  // if(points.player < firstTo && points.computer < firstTo) {
     playRound(playerSelection)
-    document.querySelector(".round").textContent = `Round ${round}`;
+    document.querySelector(".round").textContent = `Round ${round} over`;
     round++;
-  } else {
-  // for(let i=1; i<=5; i++) {
-  //   console.log(playRound(playerSelection));
-  //   document.querySelector(".round").textContent = `Round ${i+1}`;
-  // }
-  console.log(logWinner());
-  points.player = 0;
-  points.computer = 0;
+  // } else {
+  if(points.player == firstTo || points.computer == firstTo) {
+    document.querySelector(".result").textContent= logWinner();
+    points.player = 0;
+    points.computer = 0;
+    round = 1;
   }
-  //reset game points
-
 }
 
-function logWinner() {	//print winner
+function logWinner() {
   if(points.player > points.computer) {
-    console.log(`***Player wins this game with ${points.player} points***`);
+    return `***Player wins this game***`;
   } else if (points.player < points.computer) {
-    console.log(`***Computer wins this game with ${points.computer} points***`);
+    return `***Computer wins this game***`;
   } else {
-    console.log(`***It's a draw! Both have ${points.player} points.***`);
+    return `***It's a draw!***`;
   }
 }
 
