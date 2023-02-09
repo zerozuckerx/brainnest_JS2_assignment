@@ -5,14 +5,6 @@ const points = {
 }
 
 function playRound(playerSelection) {
-  //check if player started the game with an input
-  // input = prompt("Choose your weapon: Rock, paper or scissors?");
-
-  // let playerSelection = checkValid(input);
-  // if(playerSelection == undefined) {
-  //   return
-  // } else {
-
     let computerSelection = computerPlay();
     console.log("player: " + playerSelection);
     console.log("computer: " + computerSelection);
@@ -28,8 +20,8 @@ function playRound(playerSelection) {
       points.computer++;
       document.querySelector(".result").textContent = `You lose! ${computerSelection} beats ${playerSelection}`;
     }
-    document.querySelector(".playerPoints").textContent = "Player: " + points.player;
-    document.querySelector(".computerPoints").textContent = "Computer: " + points.computer;
+    document.querySelector(".player-points").textContent = "Player: " + points.player;
+    document.querySelector(".computer-points").textContent = "Computer: " + points.computer;
   }
 // }
 
@@ -47,35 +39,38 @@ function checkValid(input) {
   }
 }
 
-function game(input) {
-  console.log(` ________ \n|Round 1:| \n ‾‾‾‾‾‾‾‾`);
-  //looping 4 times with "round counter", then once without
-  for(let i=1; i<5; i++) {
-    console.log(playRound(input));
-    console.log(`Game record after round ${i}: \n***player ${points.player}:${points.computer} computer*** \n ________ \n|Round ${i+1}:|  \n ‾‾‾‾‾‾‾‾`)
-  }
-  console.log(playRound(input));
+function game(playerSelection) {
+  let round = 0;
+  let firstTo = 5;
+  if(points.player < firstTo && points.computer < firstTo) {
+    playRound(playerSelection)
+    document.querySelector(".round").textContent = `Round ${round}`;
+    round++;
+  } else {
+  // for(let i=1; i<=5; i++) {
+  //   console.log(playRound(playerSelection));
+  //   document.querySelector(".round").textContent = `Round ${i+1}`;
+  // }
   console.log(logWinner());
-  //reset game points
   points.player = 0;
   points.computer = 0;
+  }
+  //reset game points
+
 }
 
 function logWinner() {	//print winner
   if(points.player > points.computer) {
-    return `***Player wins this game with ${points.player} points***`;
+    console.log(`***Player wins this game with ${points.player} points***`);
   } else if (points.player < points.computer) {
-    return `***Computer wins this game with ${points.computer} points***`;
+    console.log(`***Computer wins this game with ${points.computer} points***`);
   } else {
-    return `***It's a draw! Both have ${points.player} points.***`;
+    console.log(`***It's a draw! Both have ${points.player} points.***`);
   }
 }
 
 let buttons = document.querySelectorAll("button");
 buttons.forEach(button => button.addEventListener("click", () => {
   // let playerSelection = button.name;
-  playRound(button.name);
+  game(button.name);
 }));
-
-document.querySelector(".playerPoints").textContent = "Player: " + points.player;
-document.querySelector(".computerPoints").textContent = "Computer: " + points.computer;

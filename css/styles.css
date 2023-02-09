@@ -11,18 +11,28 @@ body {
 button {
   background-color: #fff;
   font-family: "Techno", "sans-serif";
-  font-size: 25px;
+  font-size: 1.5rem;
   height: 100px;
   width: 120px;
 }
 
 button:hover {
   background-color: aqua;
-  font-size: 30px;
+  font-size: 1.8rem;
 }
 
 h2 {
-  font-size: 30px;
+  font-size: 2.2rem;
+}
+
+.round-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+  border: 2px solid black;
+  margin: 50px;
+  padding: 0 20px;
 }
 
 .selection {
@@ -41,7 +51,6 @@ h2 {
   border: 2px solid black;
   margin: 50px;
   padding: 0 20px;
-  /* height: 50px; */
 }
 
 .test {
